@@ -10,7 +10,7 @@ fn main() {
     let mut input = String::new();
     match stdin.read_line(&mut input) {
         Ok(n) => {
-            let output = &input[..n-2];
+            let output = &input[..n-1];
             print!("{output}: command not found\n");
         }
         Err(error) => println!("error: {error}"),
