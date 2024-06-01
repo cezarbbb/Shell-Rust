@@ -2,13 +2,13 @@
 use std::io::{self, Write};
 
 fn main() {
-    print!("$ ");
-    io::stdout().flush().unwrap();
-
     // Wait for user input
     let stdin = io::stdin();
-    let mut input = String::new();
+    
     loop {
+        let mut input = String::new();
+        print!("$ ");
+        io::stdout().flush().unwrap();
         match stdin.read_line(&mut input) {
         Ok(n) => {
             let output = &input[..n-1];
