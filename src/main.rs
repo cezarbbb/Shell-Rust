@@ -12,7 +12,7 @@ fn main() {
         let _ = stdin.read_line(&mut input);
         match input.trim().to_lowercase().as_str() {
             "exit 0" => break,
-            _ => print!("{input}: command not found\n"),
-    }
+            _ => print!("{}: command not found\n", input.trim()),
+        }
     }
 }
