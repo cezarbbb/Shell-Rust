@@ -15,7 +15,7 @@ fn main() {
             ["exit", _code] => break,
             ["echo", ..] => print!("{}", args[1..].join(" ")),
             ["type", arg, ..] => {
-                match arg {
+                match arg.trim() {
                     "exit" | "echo" => print!("{} is a shell builtin\n", arg),
                     _ => print!("{} not found\n", arg),
                 }
