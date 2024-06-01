@@ -9,12 +9,10 @@ fn main() {
         let mut input = String::new();
         print!("$ ");
         io::stdout().flush().unwrap();
-        match stdin.read_line(&mut input) {
-        Ok(n) => {
-            let output = &input[..n-1];
-            print!("{output}: command not found\n");
-        }
-        Err(error) => println!("error: {error}"),
+        let _ = stdin.read_line(&mut input);
+        match input.trim().to_lowercase().as_str() {
+            "exit 0" => break,
+            _ => print!("{input}: command not found\n"),
     }
     }
 }
