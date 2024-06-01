@@ -9,7 +9,7 @@ fn main() {
     let stdin = io::stdin();
     let mut input = String::new();
     match stdin.read_line(&mut input) {
-        Ok(n) => {
+        Ok(_n) => {
             println!("{input}: command not found");
         }
         Err(error) => println!("error: {error}"),
