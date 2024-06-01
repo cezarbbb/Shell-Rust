@@ -8,5 +8,12 @@ fn main() {
     // Wait for user input
     let stdin = io::stdin();
     let mut input = String::new();
-    stdin.read_line(&mut input).unwrap();
+    match stdin.read_line(&mut input) {
+        Ok(n) => {
+            println!("{n} bytes read");
+            println!("{input}");
+        }
+        Err(error) => println!("error: {error}"),
+    }
+
 }
