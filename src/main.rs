@@ -12,7 +12,7 @@ fn main() {
         stdin.read_line(&mut input).unwrap();
         let args: Vec<_> = input.split(' ').collect();
         match args[..] {
-            ["exit", code] => std::process::exit(code.parse::<i32>().unwrap()),
+            ["exit", _code] => break,
             ["echo", ..] => print!("{}", args[1..].join(" ")),
             _ => print!("{}: command not found\n", input.trim()),
         }
