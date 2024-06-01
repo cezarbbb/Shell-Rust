@@ -9,10 +9,12 @@ fn main() {
         let mut input = String::new();
         print!("$ ");
         io::stdout().flush().unwrap();
-        let _ = stdin.read_line(&mut input);
-        match input.trim().to_lowercase().as_str() {
-            "exit 0" => break,
-            _ => print!("{}: command not found\n", input.trim()),
+        stdin.read_line(&mut input).unwrap();
+        let args: Vec<_> = input.split(' ').collect();
+        match args[..] {
+            ["exit", code] => std::process::exit(code.parse::<i32>().unwrap()),
+            ["echo", ..] => print!("{}", args[1..].join(" ")),
+            _ => print!("{}: command not fount\n", input.trim()),
         }
     }
 }
