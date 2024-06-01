@@ -14,7 +14,7 @@ fn main() {
         match args[..] {
             ["exit", code] => std::process::exit(code.parse::<i32>().unwrap()),
             ["echo", ..] => print!("{}", args[1..].join(" ")),
-            _ => print!("{}: command not fount\n", input.trim()),
+            _ => print!("{}: command not found\n", input.trim()),
         }
     }
 }
