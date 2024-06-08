@@ -19,16 +19,18 @@ fn main() {
             ["exit", _code] => break,
             ["echo", ..] => println!("{}", args[1..].join(" ")),
             ["type", arg, ..] => {
-                // match arg.trim() {
-                //     "exit" | "echo" | "type" => print!("{} is a shell builtin\n", arg.trim()),
-                //     _ => print!("{} not found\n", arg.trim()),
-                // }
-                let mut path_split = path_env.split(':');
-                if let Some(path) = path_split.find(|path| std::fs::metadata(format!("{}/{}", path, arg)).is_ok()) {
-                    println!("{arg} is {path}/{arg}");
-                } else {
-                    println!("{arg} not found");
+                match arg {
+                    "exit" | "echo" | "type" => print!("{} is a shell builtin\n", arg.trim()),
+                    _ => {
+                        let mut path_split = path_env.split(':');
+                        if let Some(path) = path_split.find(|path| std::fs::metadata(format!("{}/{}", path, arg)).is_ok()) {
+                            println!("{arg} is {path}/{arg}");
+                        } else {
+                            println!("{arg} not found");
+                        }
+                    }
                 }
+                
             }
             _ => println!("{input}: command not found\n"),
         }
