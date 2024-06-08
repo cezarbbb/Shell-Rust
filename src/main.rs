@@ -4,14 +4,17 @@ use std::io::{self, Write};
 fn main() {
     // Wait for user input
     let stdin = io::stdin();
-    let path_env = std::env::var("PATH").unwrap();
+    let path_env = match std::env::var("PATH") {
+        Ok(path) => path,
+        Err(_) => "/bin".to_owned(),
+    };
     
     loop {
         let mut input = String::new();
         print!("$ ");
         io::stdout().flush().unwrap();
         stdin.read_line(&mut input).unwrap();
-        let args: Vec<_> = input.split(' ').collect();
+        let args: Vec<_> = input.split_whitespace().collect();
         match args[..] {
             ["exit", _code] => break,
             ["echo", ..] => print!("{}", args[1..].join(" ")),
@@ -27,7 +30,7 @@ fn main() {
                     print!("missing_cmd: {arg} not found");
                 }
             }
-            _ => print!("{}: command not found\n", input.trim()),
+            _ => print!("{input}: command not found\n"),
         }
     }
 }
