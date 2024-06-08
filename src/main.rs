@@ -8,7 +8,7 @@ fn main() {
         Ok(path) => path,
         Err(_) => "/bin".to_owned(),
     };
-    
+    print!("$ ");
     loop {
         let mut input = String::new();
         io::stdout().flush().unwrap();
