@@ -27,7 +27,7 @@ fn main() {
                 if let Some(path) = path_split.find(|path| std::fs::metadata(format!("{}/{}", path, arg)).is_ok()) {
                     println!("{arg} is {path}/{arg}");
                 } else {
-                    println!("missing_cmd: {arg} not found");
+                    println!("{arg} not found");
                 }
             }
             _ => println!("{input}: command not found\n"),
