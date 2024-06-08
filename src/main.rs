@@ -1,6 +1,5 @@
 #[allow(unused_imports)]
 use std::io::{self, Write};
-use std::path;
 use std::process::Command;
 
 fn main() {
