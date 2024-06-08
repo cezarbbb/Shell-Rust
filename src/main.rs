@@ -32,7 +32,7 @@ fn main() {
                 }
                 
             }
-            _ => println!("{input}: command not found\n"),
+            _ => println!("{}: command not found", input.trim()),
         }
     }
 }
