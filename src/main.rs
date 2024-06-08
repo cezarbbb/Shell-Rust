@@ -1,5 +1,7 @@
 #[allow(unused_imports)]
 use std::io::{self, Write};
+use std::path;
+use std::process::Command;
 
 fn main() {
     // Wait for user input
@@ -30,9 +32,17 @@ fn main() {
                         }
                     }
                 }
-                
             }
-            _ => println!("{}: command not found", input.trim()),
+            _ => {
+                for path in std::env::split_paths(&path_env) {
+                    let exec_path = path.join(args[0]);
+                    if exec_path.is_file() {
+                        Command::new(exec_path).args(&args[1..]).status().expect("failed to execute process");
+                    } else {
+                        println!("{}: command not found", input.trim())
+                    }
+                }
+            },
         }
     }
 }
