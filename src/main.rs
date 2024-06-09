@@ -37,6 +37,7 @@ fn main() {
                     let exec_path = path.join(args[0]);
                     if exec_path.is_file() {
                         Command::new(exec_path).args(&args[1..]).status().expect("failed to execute process");
+                        break;
                     } else {
                         println!("{}: command not found", input.trim())
                     }
