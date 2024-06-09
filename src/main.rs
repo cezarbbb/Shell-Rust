@@ -10,6 +10,10 @@ fn main() {
         Ok(path) => path,
         Err(_) => "/bin".to_owned(),
     };
+    let home_env = match env::var("HOME") {
+        Ok(path) => path,
+        Err(_) => "/home/user".to_owned(),
+    };
     
     loop {
         let mut input = String::new();
@@ -38,6 +42,11 @@ fn main() {
                 println!("{}", dir.display());
             },
             ["cd", path] => {
+                if path == "~" {
+                    if env::set_current_dir(&home_env).is_err() {
+                        println!("cd: {}: No such file or directory", path);
+                    }
+                }
                 if env::set_current_dir(path).is_err() {
                     println!("cd: {}: No such file or directory", path);
                 }
