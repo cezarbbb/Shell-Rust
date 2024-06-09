@@ -46,6 +46,7 @@ fn main() {
                     if env::set_current_dir(&home_env).is_err() {
                         println!("cd: {}: No such file or directory", path);
                     }
+                    return;
                 }
                 if env::set_current_dir(path).is_err() {
                     println!("cd: {}: No such file or directory", path);
