@@ -1,11 +1,12 @@
 #[allow(unused_imports)]
 use std::io::{self, Write};
 use std::process::Command;
+use std::env;
 
 fn main() {
     // Wait for user input
     let stdin = io::stdin();
-    let path_env = match std::env::var("PATH") {
+    let path_env = match env::var("PATH") {
         Ok(path) => path,
         Err(_) => "/bin".to_owned(),
     };
@@ -31,9 +32,13 @@ fn main() {
                         }
                     }
                 }
-            }
+            },
+            ["pwd"] => {
+                let dir = env::current_dir().unwrap();
+                println!("{:?}", dir);
+            },
             _ => {
-                for path in std::env::split_paths(&path_env) {
+                for path in env::split_paths(&path_env) {
                     let exec_path = path.join(args[0]);
                     if exec_path.is_file() {
                         Command::new(exec_path).args(&args[1..]).status().expect("failed to execute process");
