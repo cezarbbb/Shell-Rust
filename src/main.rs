@@ -35,7 +35,7 @@ fn main() {
             },
             ["pwd"] => {
                 let dir = env::current_dir().unwrap();
-                println!("{:?}", dir);
+                println!("{}", dir.display());
             },
             _ => {
                 for path in env::split_paths(&path_env) {
