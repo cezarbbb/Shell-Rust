@@ -37,6 +37,11 @@ fn main() {
                 let dir = env::current_dir().unwrap();
                 println!("{}", dir.display());
             },
+            ["cd", path] => {
+                if env::set_current_dir(path).is_err() {
+                    println!("cd: {}: No such file or directory", path);
+                }
+            },
             _ => {
                 for path in env::split_paths(&path_env) {
                     let exec_path = path.join(args[0]);
