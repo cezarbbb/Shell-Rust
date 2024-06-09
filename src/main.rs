@@ -39,7 +39,8 @@ fn main() {
                         Command::new(exec_path).args(&args[1..]).status().expect("failed to execute process");
                         break;
                     } else {
-                        println!("{}: command not found", input.trim())
+                        println!("{}: command not found", input.trim());
+                        break;
                     }
                 }
             },
